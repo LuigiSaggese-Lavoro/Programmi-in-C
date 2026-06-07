@@ -1,0 +1,181 @@
+Relazione Tecnica – Sviluppo di una calcolatrice in linguaggio C
+Autore: Luigi Saggese
+Data: 07/11/2023
+Consegna: realizzare un programma in linguaggio C che implementi una versione basilare di una calcolatrice in grado di eseguire diverse operazioni matematiche tra due numeri inseriti dall'utente.
+
+---
+
+# Introduzione
+Il programma sviluppato consiste in una calcolatrice da console che permette all'utente di eseguire diverse operazioni matematiche utilizzando due valori numerici. 
+Lo scopo del progetto è stato quello di applicare i concetti fondamentali della programmazione in linguaggio C, tra cui:
+utilizzo delle funzioni;
+gestione dell'input e dell'output;
+strutture di selezione;
+strutture iterative;
+gestione degli errori;
+utilizzo delle librerie standard.
+
+Il programma è stato progettato per essere semplice da utilizzare e sufficientemente robusto da gestire situazioni di errore comuni, come l'inserimento di dati non validi o 
+il tentativo di effettuare una divisione per zero.
+
+---
+
+# Obiettivi del Progetto
+Gli obiettivi principali erano:
+acquisire dati da tastiera;
+eseguire operazioni matematiche tramite funzioni dedicate;
+mostrare il risultato all'utente;
+consentire l'esecuzione di più operazioni consecutive;
+implementare controlli per evitare errori durante l'esecuzione.
+
+---
+
+# Librerie Utilizzate
+stdio.h: la libreria `stdio.h` è stata utilizzata per le operazioni di input e output tramite:
+`printf()` per visualizzare messaggi e risultati;
+`scanf()` per acquisire dati inseriti dall'utente.
+
+math.h: la libreria `math.h` è stata inclusa per utilizzare la funzione:
+`pow()`, necessaria per il calcolo delle potenze.
+
+---
+
+# Struttura del Programma
+Il programma è composto da:
+1. Funzioni matematiche.
+2. Funzione principale `main()`.
+3. Menu di selezione delle operazioni.
+4. Ciclo di ripetizione.
+5. Controlli sugli errori.
+L'idea principale è stata quella di separare ogni operazione matematica in una funzione specifica, rendendo il codice più ordinato, leggibile e facilmente modificabile.
+
+---
+
+# Implementazione delle Funzioni
+Funzione somma()
+double somma(double a, double b) {
+    return a + b;
+}
+Questa funzione restituisce la somma dei due numeri inseriti.
+--
+
+Funzione sottrazione()
+double sottrazione(double a, double b) {
+    return a - b;
+}
+Restituisce la differenza tra il primo e il secondo operando.
+--
+
+Funzione moltiplicazione()
+double moltiplicazione(double a, double b) {
+    return a * b;
+}
+Calcola il prodotto dei due numeri.
+--
+
+Funzione divisione()
+double divisione(double a, double b) {
+    return a / b;
+}
+Esegue la divisione tra due numeri decimali.
+Prima della chiamata alla funzione viene verificato che il divisore sia diverso da zero.
+--
+
+Funzione resto()
+int resto(int a, int b) {
+    return a % b;
+}
+Calcola il resto della divisione intera utilizzando l'operatore modulo `%`.
+Poiché l'operatore modulo funziona solo con numeri interi, i valori vengono convertiti da `double` a `int`.
+--
+
+Funzione potenza()
+double potenza(double a, double b) {
+    return pow(a, b);
+}
+Calcola la potenza del primo numero elevato al secondo.
+Per questa operazione viene utilizzata la funzione `pow()` della libreria matematica.
+--
+
+Funzione media()
+double media(double a, double b) {
+    return (a + b) / 2.0;
+}
+Calcola la media aritmetica dei due valori inseriti.
+--
+
+# Variabili Utilizzate
+
+| Variabile  | Tipo   | Descrizione                           |
+| a          | double | Primo numero inserito                 |
+| b          | double | Secondo numero inserito               |
+| operazione | int    | Operazione scelta dall'utente         |
+| continua   | char   | Gestisce la ripetizione del programma |
+
+---
+
+# Gestione dell'Input
+Per consentire l'utilizzo di numeri decimali è stato scelto il tipo di dato `double`.
+L'acquisizione dei dati avviene tramite:
+scanf("%lf", &a);
+scanf("%lf", &b);
+Successivamente viene controllato che il valore restituito da `scanf()` sia uguale a 1.
+In caso contrario il programma segnala un errore e termina l'esecuzione.
+
+---
+
+# Menu delle Operazioni
+
+Dopo l'inserimento dei dati viene visualizzato un menu che consente di scegliere l'operazione desiderata.
+
+Operazioni disponibili:
+
+| Codice | Operazione            |
+| 1      | Addizione             |
+| 2      | Sottrazione           |
+| 3      | Moltiplicazione       |
+| 4      | Divisione             |
+| 5      | Resto della divisione |
+| 6      | Potenza               |
+| 7      | Media aritmetica      |
+
+---
+
+# Utilizzo della Struttura Switch
+
+Per gestire la scelta dell'utente è stata utilizzata una struttura `switch`.
+Questa soluzione permette di eseguire il blocco di codice corrispondente all'operazione selezionata in modo ordinato e leggibile.
+Ogni caso richiama la funzione appropriata e visualizza il risultato.
+
+---
+
+# Gestione degli Errori
+Input non valido:
+Se l'utente inserisce un valore incompatibile con il tipo richiesto, il programma mostra un messaggio e termina l'esecuzione.
+--
+
+Divisione per zero
+Prima di effettuare una divisione viene verificata una condizione. Se il divisore è uguale a zero viene visualizzato un messaggio.
+--
+
+Resto con divisore nullo
+
+Prima del calcolo del modulo viene effettuato un controllo analogo. In questo modo si evita un errore matematico durante l'esecuzione.
+--
+
+# Struttura Iterativa
+Per consentire l'esecuzione di più operazioni consecutive è stato utilizzato un ciclo `while`.
+while (continua == 'y' || continua == 'Y')
+Alla fine di ogni operazione l'utente può decidere se continuare o terminare il programma.
+
+Se viene inserito:
+`y` oppure `Y` → il programma continua;
+qualsiasi altro carattere → il programma termina.
+
+---
+
+# Conclusioni
+
+Lo sviluppo di questa calcolatrice ha permesso di consolidare le conoscenze fondamentali del linguaggio C e di applicare tecniche di programmazione strutturata. 
+La suddivisione del programma in funzioni dedicate ha migliorato la leggibilità e la manutenzione del codice, mentre l'introduzione dei controlli sugli errori ha reso l'applicazione più affidabile.
+Il risultato finale è una calcolatrice semplice ma completa, capace di eseguire diverse operazioni matematiche e di interagire correttamente con l'utente attraverso un'interfaccia testuale.
